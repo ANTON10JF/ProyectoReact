@@ -5,13 +5,16 @@ export default function Nav() {
         <nav>
             <ul>
                 <li>
-                    <Link to='/'>Link1</Link>
+                    <Link to='/products'>Listado de productos</Link>
                 </li>
                 <li>
                     <Link to='/'>Link2</Link>
                 </li>
                 <li>
                     <Link to='/'>Link3</Link>
+                </li>
+                <li>
+                    <Link to='/contact'>Contacto</Link>
                 </li>
                 <li>
                     <Link to='/not-found'>NotFound</Link>
