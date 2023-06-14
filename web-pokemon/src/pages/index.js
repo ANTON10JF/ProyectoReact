@@ -5,13 +5,20 @@ import NotFound from "./NotFound/NotFound";
 import Vehicles from "./Vehicles/Vehicles";
 import ProductsList from "./products/ProductsList";
 import Product from "./product/Product";
+import Vehicle from "./Vehicle/Vehicle";
+import Animal from "./Animale/Animal";
+import Animals from "./Animals/Animals";
+
 
 export {
     About,
     Contact,
     HomePage,
     NotFound,
-    Vehicles
+    Vehicles,
     ProductsList,
-    Product
+    Product,
+    Vehicle,
+    Animal,
+    Animals
 }

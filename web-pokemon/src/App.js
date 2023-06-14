@@ -1,13 +1,7 @@
 import './App.css';
-import { HomePage, Contact, NotFound, About, ProductsList, Product } from './pages/';
+import { HomePage, Contact, NotFound, About, ProductsList, Product, Vehicles, Vehicle, Animals, Animal } from './pages/';
 import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import {Header} from './layout/'
-import { HomePage, Contact, NotFound, About, Vehiculos } from './pages/';
-import {BrowserRouter, Routes, Route, } from 'react-router-dom';
-import Vehicles from './pages/Vehicles/Vehicles';
-import Vehicle from './pages/Vehicle/Vehicle';
-import Animals from './pages/Animals/Animals';
-import Animal from './pages/Animale/Animal';
 
 function App() {
   return (

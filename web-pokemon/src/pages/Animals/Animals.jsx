@@ -2,7 +2,7 @@ import posts from '../../data/dataAnimals/dataAnimals'
 import { Link, useResolvedPath } from 'react-router-dom'
 
 
-export default function Animales() {
+export default function Animals() {
 
     const path = useResolvedPath().pathname
 
