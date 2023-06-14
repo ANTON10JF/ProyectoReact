@@ -1,3 +1,4 @@
+
 import { Map } from "../../compartidos";
 
 
@@ -17,3 +18,4 @@ export default function Contact() {
 
     );
 }
+

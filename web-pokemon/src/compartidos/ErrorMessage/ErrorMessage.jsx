@@ -1,6 +1,7 @@
+
 export default function ErrorMessage({ message }) {
     return (
-        <section>
+        <section className='error-message'>
             <header>
                 <h2>{message}</h2>
             </header>
@@ -8,3 +9,5 @@ export default function ErrorMessage({ message }) {
     );
 
 }
+
+

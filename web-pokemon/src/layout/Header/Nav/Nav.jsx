@@ -7,11 +7,16 @@ export default function Nav() {
                 <li>
                     <Link to='/products'>Listado de productos</Link>
                 </li>
+      
+                <li>
+                    <Link to='/animals'>Animals</Link>
+                </li>
+                
                 <li>
                     <Link to='/'>Link2</Link>
                 </li>
                 <li>
-                    <Link to='/'>Link3</Link>
+                    <Link to='/about'>About</Link>
                 </li>
                 <li>
                     <Link to='/contact'>Contacto</Link>
