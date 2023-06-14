@@ -3,11 +3,12 @@ import products from "../../data/products/products";
 
 export default function Product() {
     let { id } = useParams();
-    console.log(id);
+
 
     const filteredProducts = products.filter((product) => {
-        return product.id === id;
+        return product.id == id;
     });
+
 
     if (filteredProducts.length === 0) {
         return (
@@ -39,4 +40,5 @@ export default function Product() {
         </>
 
     );
+
 }
