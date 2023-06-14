@@ -1,30 +1,44 @@
-import posts from '../../data/dataAnimals/dataAnimals'
+import { useEffect, useState } from 'react';
+//import posts from '../../data/dataAnimals/dataAnimals'
 import { Link, useResolvedPath } from 'react-router-dom'
 
 
 export default function Animals() {
 
-    const path = useResolvedPath().pathname
+    const path = useResolvedPath().pathname;
+    const [animals, setAnimals] = useState([]);
+
+
+    useEffect(() => {
+        getAnimals();
+    }, []);
+
+
+    function getAnimals() {
+        const getLocalStorage = JSON.parse(localStorage.getItem('animals'));
+        setAnimals(getLocalStorage);
+    };
 
     return (
         <section>
-            <header>
+            <header className='section-title'>
                 <h2>Animales</h2>
             </header>
             <main>
                 <div className='lista-container'>
-                    {posts.map(post =>
-                        <Link to={`${path}/animal/${post.id}`} key={post.id}>
+                    {animals.map(animal =>
+                        <Link to={`${path}/animal/${animal.id}`} key={animal.id}>
                             <article className='card shadows-cards'>
-                                <h3 className='title-card'>{post.species}</h3>
+
+                                <h3 className='title-card'>{animal.species}</h3>
                                 <div className='body-card'>
-                                    {/* <img src={`${post.img}`} alt='imgAnimal' /> */}
+                                    <div className='card-img'>
+                                        <img src={`${animal.img}`} alt='imgAnimal' />
+                                    </div>
                                     <p>
-                                        {post.excerpt}
+                                        {animal.excerpt}
                                     </p>
-                                </div>
-                                <div className='footer-card'>
-                                    <span>{'From->'}{post.location}</span>
+                                    <p>{'From->'}{animal.location}</p>
                                 </div>
                             </article>
                         </Link>

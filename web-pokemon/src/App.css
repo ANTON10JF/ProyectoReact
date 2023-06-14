@@ -5,7 +5,58 @@
   box-sizing: border-box;
 }
 
+/* ## Variables ## */
+
+* {
+  --mainColor: #F19393;
+  --hoverMainColor: #c97a7a;
+  --generalBlack: rgb(43, 43, 43);
+}
+
+/* ## App ## */
+#container-app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#container-body-app {
+  flex: 1;
+  margin: 2rem;
+  /*  Le decimos que sea flex porque necesitamos que en not-found ocupe el 100% de la página,
+  así en esa sección le decimos que tenga un flex: 1, lo que provoca que crezca según el tamaño que tenga.
+  Igual que hemos hecho con este hijo y su padre #container-app para dejar el footer siempre abajo, haciendo que el contendor de la web ocupe 100vh y el hijo todo el espacio que pueda dentro de el*/
+  display: flex;
+}
+
 /* ## General ## */
+
+p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+input,
+label {
+  color: var(--generalBlack)
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.shh {
+  display: none;
+}
+
+/* ** Lists ** */
+
+.section-title {
+  margin: 1rem 0;
+}
+
 .shadows-cards {
   background-color: #ffffff;
   border-radius: 10px;
@@ -18,7 +69,6 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-/*  */
 
 .lista-container {
   display: flex;
@@ -27,14 +77,16 @@
   justify-content: space-evenly;
 }
 
+.lista-container>a {
+  text-decoration: none;
+}
+
 .card {
   border: 1px solid rgb(43, 43, 43);
-  width: 20rem;
-  height: 20rem;
+  width: 25rem;
+  height: 25rem;
   display: grid;
   grid-template-rows: auto 1fr;
-
-
 }
 
 .title-card {
@@ -44,31 +96,23 @@
 .body-card {
   padding: .5rem;
   display: grid;
-  grid-template-rows: 4fr 1fr;
+  /* grid-template: auto; */
 }
 
 .body-card p {
-  place-items: center;
   line-height: 1.5rem;
 }
 
-.footer-card {
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+.card-img {
+
+  height: 200px;
+  overflow: hidden;
 }
 
-/*  */
+.card-img img {
 
-
-/* ## App ## */
-#container-app {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
-
-#container-body-app {
-  flex: 1;
-  margin: 2rem;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: top;
 }

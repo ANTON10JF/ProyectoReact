@@ -1,0 +1,13 @@
+#main-nav ul {
+    display: flex;
+    max-width: max-content;
+}
+
+#main-nav li {
+    padding: 1rem;
+    list-style: none;
+}
+
+#main-nav li:hover {
+    background-color: var(--hoverMainColor);
+}

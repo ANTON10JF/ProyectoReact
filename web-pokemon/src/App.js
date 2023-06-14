@@ -1,9 +1,17 @@
 import './App.css';
 import { HomePage, Contact, NotFound, About, ProductsList, Product, Vehicles, Vehicle, Animals, Animal } from './pages/';
 import { BrowserRouter, Routes, Route, } from 'react-router-dom';
-import {Header} from './layout/'
+import {Footer, Header} from './layout/'
+import { useEffect } from 'react';
+import { postAnimals } from './data/dataAnimals/dataAnimals';
+
 
 function App() {
+
+  useEffect(()=>{
+    postAnimals()    
+  });
+
   return (
     <BrowserRouter>
     <div id='container-app'>
@@ -22,6 +30,7 @@ function App() {
             <Route path='/vehicles/vehicle/:id' element={<Vehicle/>}></Route>
         </Routes>
       </div>
+      <Footer/>
     </div>
     </BrowserRouter>
   );

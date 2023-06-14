@@ -1,0 +1,15 @@
+#section-not-found {
+    flex-grow: 1;
+    background-color: aquamarine;
+}
+
+#error-404 span {
+    background-color: beige;
+    font-size: 12rem;
+}
+
+.container-pok-ball {
+    height: 12rem;
+    width: 12rem;
+    background-color: var(--mainColor);
+}
