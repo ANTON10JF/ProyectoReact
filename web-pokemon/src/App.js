@@ -15,8 +15,8 @@ function App() {
       <div id='container-body-app'>
         <Routes>
             <Route path='/' element={<HomePage/>}/>
-            <Route path='/animales' element={<Animals/>}/>
-            <Route path='/animal/:id' element={<Animal/>}/>
+            <Route path='/animals' element={<Animals/>}/>
+            <Route path='/animals/animal/:id' element={<Animal/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/not-found' element={<NotFound/>}/>
         </Routes>

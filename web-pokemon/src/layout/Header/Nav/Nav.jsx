@@ -5,7 +5,7 @@ export default function Nav() {
         <nav>
             <ul>
                 <li>
-                    <Link to='/animales'>Animals</Link>
+                    <Link to='/animals'>Animals</Link>
                 </li>
                 <li>
                     <Link to='/'>Link2</Link>
