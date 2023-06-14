@@ -10,30 +10,35 @@ export default function ProductsList() {
             <header>
                 <h2>Lista de productos</h2>
             </header>
-            {
-                products.map((product) => {
-                    return (
+            <main className="lista-container">
+                {
+                    products.map((product) => {
+                        return (
 
-                        <article key={product.id}>
+                            <article className="card-shadows" key={product.id}>
 
-                            <div>
+                                {/* <div>
                                 <img src={product.image} alt={product.name} />
-                            </div>
+                            </div> */}
 
-                            <div>
-                                <Link to={`${path}/product/${product.id}`}>
-                                    <h3>{product.name}</h3>
-                                </Link>
-                            </div>
+                                <div className="title-card">
+                                    <Link to={`${path}/product/${product.id}`}>
+                                        <h3>{product.name}</h3>
+                                    </Link>
+                                </div>
+                                <div className="body-card">
+                                    <p>{product.description}</p>
+                                </div>
+                                <div className="footer-card">
+                                    <p>{product.price}</p>
+                                </div>
 
-                            <p>{product.description}</p>
-                            <p>{product.price}</p>
+                            </article>
 
-                        </article>
-
-                    );
-                })
-            }
+                        );
+                    })
+                }
+            </main>
         </section>
 
     );
