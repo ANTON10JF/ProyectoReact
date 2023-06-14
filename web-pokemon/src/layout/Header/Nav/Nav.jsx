@@ -11,7 +11,7 @@ export default function Nav() {
                     <Link to='/'>Link2</Link>
                 </li>
                 <li>
-                    <Link to='/'>Link3</Link>
+                    <Link to='/vehicles'>Vehiculos</Link>
                 </li>
                 <li>
                     <Link to='/not-found'>NotFound</Link>
