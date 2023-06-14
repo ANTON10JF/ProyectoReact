@@ -10,10 +10,12 @@ export default function Nav() {
       
                 <li>
                     <Link to='/animals'>Animals</Link>
-                </li>
-                
+                </li>          
                 <li>
                     <Link to='/'>Link2</Link>
+                </li>
+                <li>
+                    <Link to='/vehicles'>Vehiculos</Link>
                 </li>
                 <li>
                     <Link to='/about'>About</Link>
