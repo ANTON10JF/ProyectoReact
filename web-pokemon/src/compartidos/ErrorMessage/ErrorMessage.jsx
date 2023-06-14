@@ -1,10 +1,13 @@
 
-const ErrorMessage = ({ message }) => {
+export default function ErrorMessage({ message }) {
     return (
-        <div className='error-message'>
-            <p>{message}</p>
-        </div>
-    )
+        <section className='error-message'>
+            <header>
+                <h2>{message}</h2>
+            </header>
+        </section>
+    );
+
 }
 
-export default ErrorMessage;
+

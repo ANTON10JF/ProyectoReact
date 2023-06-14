@@ -1,12 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
+import { HomePage, Contact, NotFound, About, ProductsList, Product } from './pages/';
+import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import {Header} from './layout/'
-import { HomePage, Contact, NotFound, About } from './pages/';
-import {BrowserRouter, Routes, Route, } from 'react-router-dom';
 import Animals from './pages/Animals/Animals';
 import Animal from './pages/Animale/Animal';
-
-
 function App() {
   return (
     <BrowserRouter>
@@ -19,9 +16,13 @@ function App() {
             <Route path='/animals/animal/:id' element={<Animal/>}/>
             <Route path='/about' element={<About/>}/>
             <Route path='/not-found' element={<NotFound/>}/>
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/products' element={<ProductsList />} />
+            <Route path='/products/product/:id' element={<Product />} />
         </Routes>
       </div>
     </div>
+
     </BrowserRouter>
   );
 }
