@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { ErrorMessage } from "../../compartidos";
 import products from "../../data/products/products";
 
 export default function Product() {
@@ -10,15 +11,13 @@ export default function Product() {
     });
 
 
-    if (filteredProducts.length === 0) {
-        return (
-            <section>
-                <header>
-                    <h2>Producto no encontrado</h2>
-                </header>
-            </section>
-        );
+
+
+    if (!filteredProducts.length) {
+        return <ErrorMessage message={"Producto no encontrado"} />
     }
+
+
 
     const product = filteredProducts[0];
 

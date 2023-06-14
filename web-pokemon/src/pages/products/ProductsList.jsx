@@ -1,7 +1,9 @@
 import products from "../../data/products/products";
-import { Link } from "react-router-dom";
+import { Link, useResolvedPath } from "react-router-dom";
 
 export default function ProductsList() {
+    const path = useResolvedPath("").pathname;
+
     return (
 
         <section>
@@ -19,7 +21,7 @@ export default function ProductsList() {
                             </div>
 
                             <div>
-                                <Link to={`product/${product.id}`}>
+                                <Link to={`${path}/product/${product.id}`}>
                                     <h3>{product.name}</h3>
                                 </Link>
                             </div>
