@@ -6,26 +6,26 @@ export default function Nav() {
         <nav id='main-nav'>
             <ul>
                 <li>
-                    <Link to='/'>Home page</Link>
+                    <Link to='/' className='link'>Home</Link>
                 </li>
                 <li>
-                    <Link to='/products'>Listado de productos</Link>
+                    <Link to='/products' className='link link-products'></Link>
                 </li>
 
-                <li>
-                    <Link to='/animals'>Animals</Link>
+                <li id='animals'>
+                    <Link to='/animals' className='link link-animals'></Link>
                 </li>
                 <li>
-                    <Link to='/vehicles'>Vehiculos</Link>
+                    <Link to='/vehicles' className='link link-vehicles'></Link>
                 </li>
                 <li>
-                    <Link to='/about'>About</Link>
+                    <Link to='/about' className='link'>About us</Link>
                 </li>
                 <li>
-                    <Link to='/contact'>Contact</Link>
+                    <Link to='/contact' className='link '>Contact</Link>
                 </li>
                 <li>
-                    <Link to='/not-found'>{'(NotFound)'}</Link>
+                    <Link to='/not-found' className='link link-'>{'(NotFound)'}</Link>
                 </li>
             </ul>
         </nav>
