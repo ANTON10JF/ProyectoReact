@@ -27,7 +27,7 @@ export default function Animals() {
             <main>
                 <div className='lista-container'>
                     {animals.map(animal =>
-                        <Link to={`${path}/animal/${animal.id}`} key={animal.id}>
+                        <Link to={`/animal/${animal.id}`} key={animal.id}>
                             <article className='card shadows-cards'>
 
                                 <h3 className='title-card'>{animal.species}</h3>

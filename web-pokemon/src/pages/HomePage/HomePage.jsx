@@ -2,6 +2,7 @@ import './homePage.css'
 import { useState } from 'react';
 import { useEffect } from 'react';
 export default function HomePage() {
+    const [showSubTitle, setShowSubTitle] = useState(false)
     const [showLetterO, setShowLetterO] = useState(false)
 
     const [showWord, setShowWord] = useState(false)
@@ -10,7 +11,9 @@ export default function HomePage() {
     const [showPoint3, setShowPoint3] = useState(false)
 
 
+
     useEffect(() => {
+
         //O 
         setTimeout(() => {
             setShowLetterO(true)
@@ -32,6 +35,9 @@ export default function HomePage() {
             setShowPoint3(true)
         }, 2500)
     }, [])
+
+
+
 
 
     return (
