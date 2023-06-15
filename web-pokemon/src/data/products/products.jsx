@@ -20,7 +20,7 @@ export default function postProduct() {
 
     arrayProducts = quantity.map((product) => {
         return {
-            id: product,
+            id: faker.datatype.uuid(),
             name: faker.commerce.product(),
             price: faker.commerce.price(),
             image: faker.image.image(),

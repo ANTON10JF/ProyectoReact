@@ -10,6 +10,7 @@ export default function Product() {
     useEffect(() => {
         getProduct(id);
     }, []);
+
     const getProduct = (id) => {
         const getLocalStorage = JSON.parse(localStorage.getItem('products'));
         const getProduct = getLocalStorage.filter(product => product.id == id);
