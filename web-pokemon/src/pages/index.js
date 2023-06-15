@@ -6,7 +6,7 @@ import Vehicles from "./Vehicles/Vehicles";
 import ProductsList from "./products/ProductsList";
 import Product from "./product/Product";
 import Vehicle from "./Vehicle/Vehicle";
-import Animal from "./Animale/Animal";
+import Animal from "./Animal/Animal";
 import Animals from "./Animals/Animals";
 
 

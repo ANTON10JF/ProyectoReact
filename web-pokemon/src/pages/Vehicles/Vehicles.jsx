@@ -19,22 +19,25 @@ export default function Vehicles() {
 
     return (
         <section>
-            <header className="section-title">
+
+            <header className='section-title'>
                 <h2>Vehiculos</h2>
             </header>
+
             <main>
-                <div className="lista-container">
-                    {vehicles.map(vehicle => 
+                <div className='lista-container'>
+                    {vehicles.map(vehicle =>
                         <Link to={`${path}/vehicle/${vehicle.id}`} key={vehicle.id}>
-                            <article className="card shadow-cards">
+                            <article className="card shadows-cards">
                                 <h3 className="title-card">{vehicle.vehicle}</h3>
+                                {/* <img src={`${vehicle.img}` alt=""}></img> */}
                                 <div className="body-card">
-                                    {/* <div className='card-img'>
-                                        <img src={`${animal.img}`} alt='imgAnimal' />
-                                    </div> */}
-                                    <p>{vehicle.model} <br />
-                                    {vehicle.color}</p>
+                                    <p>{vehicle.model}</p>
+
+                                    <p>{vehicle.color}</p>
                                 </div>
+                                {/* <div className="footer-card"></div> */}
+
                             </article>
                         </Link>
                     )}
