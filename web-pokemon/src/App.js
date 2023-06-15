@@ -2,8 +2,15 @@ import './App.css';
 import { HomePage, Contact, NotFound, About, ProductsList, Product, Vehicles, Vehicle, Animals, Animal } from './pages/';
 import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 import {Header} from './layout/'
+import { useEffect } from 'react';
+import { postVehicles } from './data/dataVehicles/dataVehicles';
 
 function App() {
+
+  useEffect(() => {
+    postVehicles()
+  });
+
   return (
     <BrowserRouter>
     <div id='container-app'>
