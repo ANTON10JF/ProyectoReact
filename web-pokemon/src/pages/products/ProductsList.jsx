@@ -11,13 +11,12 @@ export default function ProductsList() {
                 <h2>Lista de productos</h2>
             </header>
             <main >
-                <div className='lista-container'>
+                <div className="lista-container">
                     {
                         products.map((product) => {
                             return (
 
                                 <article className="card shadows-cards" key={product.id}>
-
                                     <div className="body-card">
                                         <div className='card-img'>
                                             <img src={product.image} alt={product.name} />
@@ -31,8 +30,8 @@ export default function ProductsList() {
                                         <p>{product.description}</p>
                                         <p>{product.price}</p>
                                     </div>
-                                </article>
 
+                                </article>
                             );
                         })
                     }

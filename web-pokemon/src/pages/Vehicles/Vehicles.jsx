@@ -1,13 +1,25 @@
-import vehicles from "../../data/dataVehicles/dataVehicles";
+// import vehicles from "../../data/dataVehicles/dataVehicles";
+import { useEffect, useState } from "react";
 import { Link, useResolvedPath } from "react-router-dom";
 
 
 export default function Vehicles() {
 
     const path = useResolvedPath().pathname;
+    const [vehicles, setVehicles] = useState([]);
+
+    useEffect(() => {
+        getVehicles();
+    }, [])
+
+    function getVehicles() {
+        const getLocalStorage = JSON.parse(localStorage.getItem('vehicles'));
+        setVehicles(getLocalStorage);
+    }
 
     return (
         <section>
+
             <header className='section-title'>
                 <h2>Vehiculos</h2>
             </header>
@@ -25,12 +37,12 @@ export default function Vehicles() {
                                     <p>{vehicle.color}</p>
                                 </div>
                                 {/* <div className="footer-card"></div> */}
+
                             </article>
                         </Link>
                     )}
                 </div>
             </main>
-
         </section>
     );
 }
