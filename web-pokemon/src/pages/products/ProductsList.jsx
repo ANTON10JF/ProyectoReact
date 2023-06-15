@@ -1,8 +1,19 @@
-import products from "../../data/products/products";
+
 import { Link, useResolvedPath } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function ProductsList() {
     const path = useResolvedPath("").pathname;
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        getProducts();
+    }, []);
+
+    function getProducts() {
+        const products = JSON.parse(localStorage.getItem('products'));
+        setProducts(products);
+    }
 
     return (
 
@@ -19,7 +30,7 @@ export default function ProductsList() {
                                 <article className="card shadows-cards" key={product.id}>
                                     <div className="body-card">
                                         <div className='card-img'>
-                                            <img src={product.image} alt={product.name} />
+                                            <img src={product.image} alt={product.name} height="200px" />
                                         </div>
 
                                         <div className="title-card">
