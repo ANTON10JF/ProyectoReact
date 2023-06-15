@@ -14,7 +14,7 @@ function App() {
     postAnimals()   
     postVehicles()
 
-  });
+  },[]);
 
   return (
     <BrowserRouter>
