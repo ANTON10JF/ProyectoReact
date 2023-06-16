@@ -1,20 +1,20 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import ModalForm from '../../compartidos/ModalForm/ModalForm';
-import deleteItem from '../../seudoHooks/deleteItem/deleteItem';
 
 
 export default function Animals() {
 
     const [animals, setAnimals] = useState([]);
-    const [change, setChange] = useState(false);
+    //Lo inicializamos a true para que el use effect se vuelva a ejecutar y cambie el esado de 'animals' a un array con los datos del local storage, si no no se actualiza el estado y el array en el primer pintado esta vacio
+    //Cada vez que se ejecute un cambio invocamos useEffect al cambiar el estado
+    const [change, setChange] = useState(true);
     const [openModal, setOpenModal] = useState(false);
     const [datos, setDatos] = useState({ id: '', species: '', image: '', location: '', excerpt: '', description: '' })
     const [editItem, setEditItem] = useState('');
 
-    /*  */
+
     const [getLocalStorage, setGetLocalStorage] = useState([])
-    /*  */
 
     useEffect(() => {
         //Reasignamos el estado 'change' a fale, para posibles nuevos cambios
@@ -28,11 +28,10 @@ export default function Animals() {
 
         //Esta funcion se ejecuta cada vez que se llama a 'setAnimals', incluso entre renderizaciones lo que garantiza el valor actualizado 
         setAnimals(() => getLocalStorage);
+        //setAnimals(getLocalStorage)
 
         //Cada vez que el estado 'change' se actualiza se ejecuta useEffect
     }, [change]);
-
-
 
 
     //Logica encargada de crear un item y agregarlo al localStorage
@@ -82,7 +81,7 @@ export default function Animals() {
         //Si estamos seguros, creamos un nuevo array con todos los objetos del local storage que sean diferentes al id al que apuntamos "borramos el item"
         //Y a continuacion actualizamos el valor en el localStorage
         if (sure) {
-            const editLocalStorage = getLocalStorage.filter(animals => animals.id != animalId);
+            const editLocalStorage = JSON.parse(localStorage.getItem('animals')).filter(animals => animals.id != animalId);
 
             //Seteamos el nuevo array al localStorage, esto pisara el 'key' con el mismo nombre
             localStorage.setItem('animals', JSON.stringify(editLocalStorage));
@@ -106,6 +105,8 @@ export default function Animals() {
     //Logica encargada de manejar el submit del formulario
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        const modifiedLocalStorage = JSON.parse(localStorage.getItem('animals'))
 
         //Si el estado 'editItem' es = 'falshy', estamos creando un nuevo item
         if (!editItem) {
@@ -116,14 +117,14 @@ export default function Animals() {
                 }
             });
             datos.id = maxId + 1
-            getLocalStorage.unshift(datos);
-            localStorage.setItem('animals', JSON.stringify(getLocalStorage));
+            modifiedLocalStorage.unshift(datos);
+            localStorage.setItem('animals', JSON.stringify(modifiedLocalStorage));
         }
 
         //Si el estado 'editItem' es = 'truthy', estamos editando un item y 'editItem' contiene ese item 
         if (editItem) {
             //Creamos un nuevo array con los datos del locaStorage, pero modificando el item que coincida con el que le pasamos (el item a editar)
-            const editLocalStorage = getLocalStorage.map(animal => {
+            const editLocalStorage = modifiedLocalStorage.map(animal => {
 
                 //Con el map recorremos el localStorage, si encontramos una coincidencia de ID modificamos los valores de ESE objeto y lo devolvemos,
                 //si no, devolvemos el objeto recorrido en ese momento
@@ -162,8 +163,8 @@ export default function Animals() {
     };
 
 
-    //Creamos un Componente que retorna un formulario para editar o crear un nuevo item 'animal' y lo pintamos dentro del Comonente 'ModalForm'
-    function FormAnimal() {
+    //Creamos un 'Componente' que retorna un formulario para editar o crear un nuevo item 'animal' y lo pintamos dentro del Comonente 'ModalForm'
+    function formAnimal() {
         return (
             <form className='modal-form' onSubmit={handleSubmit}>
                 <label>Species:
@@ -190,6 +191,7 @@ export default function Animals() {
             </form>
         );
     };
+
 
     return (
         <section>
@@ -225,8 +227,10 @@ export default function Animals() {
             </main>
             <button className='add-item' onClick={newAnimal}>+</button>
 
-            {/* Si openModal es true, mostramos el componente modal */}
-            {openModal ? <ModalForm setOpenModal={setOpenModal}>{<FormAnimal />}</ModalForm> : null}
+            {/* Si openModal es true, mostramos el 'componente' modal */}
+            {openModal ? <ModalForm setOpenModal={setOpenModal}>{formAnimal()}</ModalForm> : null}
         </section>
     );
+    
+
 };
