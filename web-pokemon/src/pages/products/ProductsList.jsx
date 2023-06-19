@@ -6,17 +6,26 @@ import { faker } from "@faker-js/faker";
 export default function ProductsList() {
     const path = useResolvedPath("").pathname;
     const [products, setProducts] = useState([]);
+    const [editMode, setEditMode] = useState(false);
+    const [selectedProduct, setSelectedProduct] = useState(null);
 
     useEffect(() => {
         getProducts();
-    }, []);
+
+        if (editMode && selectedProduct) {
+            setForm(selectedProduct);
+        }
+    }, [editMode, selectedProduct]);
 
     function getProducts() {
         const products = JSON.parse(localStorage.getItem('products'));
         setProducts(products);
     }
 
-    const handleEditar = (id) => {
+
+    const handleEditar = (product) => {
+        setEditMode(true);
+        setSelectedProduct(product);
 
     }
 
@@ -56,10 +65,30 @@ export default function ProductsList() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const products = JSON.parse(localStorage.getItem('products'));
-        const newProducts = [...products, form];
-        localStorage.setItem('products', JSON.stringify(newProducts));
-        getProducts();
+
+        if (editMode && selectedProduct) {
+            const updatedProducts = products.map((product) => {
+                if (product.id === selectedProduct.id) {
+                    return {
+                        ...product,
+                        name: form.name,
+                        price: form.price,
+                        image: form.image,
+                        description: form.description,
+                    }
+                }
+                return product;
+            });
+            setProducts(updatedProducts);
+            localStorage.setItem('products', JSON.stringify(updatedProducts));
+        } else {
+            const newProduct = {
+                ...form,
+                id: faker.datatype.uuid(),
+            }
+            setProducts([...products, newProduct]);
+            localStorage.setItem('products', JSON.stringify([...products, newProduct]));
+        }
 
         setForm({
             id: faker.datatype.uuid(),
@@ -69,6 +98,9 @@ export default function ProductsList() {
             description: '',
 
         })
+
+        setEditMode(false);
+        setSelectedProduct(null);
 
     }
 
@@ -125,7 +157,7 @@ export default function ProductsList() {
                                             </div>
                                             <p>{product.description}</p>
                                             <p>{product.price}</p>
-                                            <button onClick={() => handleEditar(product.id)}>Editar</button>
+                                            <button onClick={() => handleEditar(product)}>Editar</button>
                                             <button onClick={() => handleEliminar(product.id)}>Eliminar</button>
                                         </div>
 
