@@ -32,43 +32,45 @@ export default function Contact() {
 
     return (
         <>
-            <div >
-                <section>
+            <div className="container" >
+                <section className="form">
 
-                    <div className="contact-container">
-                        <h2>Contacto</h2>
-                        <form onSubmit={handleSubmit} className="contact-form">
-                            <input
-                                type="text"
-                                name="name"
-                                placeholder="Nombre"
-                                value={formContact.name}
-                                onChange={handleChange}
-                                required
-                            />
-                            <input
-                                type="email"
-                                name="email"
-                                placeholder="Email"
-                                value={formContact.email}
-                                onChange={handleChange}
-                                required
-                            />
-                            <textarea
-                                name="message"
-                                placeholder="Mensaje"
-                                value={formContact.message}
-                                onChange={handleChange}
-                                required
-                            ></textarea>
-                            <button type="submit">Enviar</button>
-                        </form>
-                    </div>
+
+                    <h2>Contacta con nosotros</h2>
+                    <hr />
+                    <form onSubmit={handleSubmit} className="contact-form">
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Nombre"
+                            value={formContact.name}
+                            onChange={handleChange}
+                            required
+                        />
+                        <input
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            value={formContact.email}
+                            onChange={handleChange}
+                            required
+                        />
+                        <textarea
+                            name="message"
+                            placeholder="Mensaje"
+                            value={formContact.message}
+                            onChange={handleChange}
+                            required
+                        ></textarea>
+                        <button type="submit">Enviar</button>
+                    </form>
+
 
                 </section>
 
-                <section>
-                    <p>Donde localizarnos</p>
+                <section className="map">
+                    <hr />
+                    <h2>Donde localizarnos</h2>
                     <Map />
                 </section>
             </div>
