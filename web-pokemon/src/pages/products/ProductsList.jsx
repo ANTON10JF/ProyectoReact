@@ -17,7 +17,7 @@ export default function ProductsList() {
     }
 
     const handleEditar = (id) => {
-        console.log(id);
+
     }
 
     const handleEliminar = (id) => {
@@ -45,10 +45,30 @@ export default function ProductsList() {
     });
 
     const handleChange = (e) => {
-
+        const { name, value } = e.target;
+        setForm((prevForm) => {
+            return {
+                ...prevForm,
+                [name]: value,
+            };
+        });
     }
 
     const handleSubmit = (e) => {
+        e.preventDefault();
+        const products = JSON.parse(localStorage.getItem('products'));
+        const newProducts = [...products, form];
+        localStorage.setItem('products', JSON.stringify(newProducts));
+        getProducts();
+
+        setForm({
+            id: faker.datatype.uuid(),
+            name: '',
+            price: '',
+            image: faker.image.image(),
+            description: '',
+
+        })
 
     }
 
@@ -65,7 +85,7 @@ export default function ProductsList() {
                     </div>
                     <div>
                         <label htmlFor="price">Precio</label>
-                        <input type="text" id="price" name="price" value={form.price} onChange={handleChange} />
+                        <input type="number" id="price" name="price" value={form.price} onChange={handleChange} />
                     </div>
                     <div>
                         <label htmlFor="image">Imagen</label>

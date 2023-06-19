@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ErrorMessage } from "../../compartidos";
-import products from "../../data/products/products";
 
 export default function Product() {
     let { id } = useParams();

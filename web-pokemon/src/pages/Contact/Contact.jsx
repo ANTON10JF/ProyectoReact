@@ -68,7 +68,7 @@ export default function Contact() {
                 </section>
 
                 <section>
-                    <p>GoogleMap</p>
+                    <p>Donde localizarnos</p>
                     <Map />
                 </section>
             </div>
