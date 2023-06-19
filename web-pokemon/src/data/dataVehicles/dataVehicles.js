@@ -27,9 +27,10 @@ export function postVehicles() {
             color:faker.vehicle.color(),
             type:faker.vehicle.type(),
             model:faker.vehicle.model(),
-            fuel:faker.vehicle.fuel(),
-            vin:faker.vehicle.vin(),
-            vrm:faker.vehicle.vrm(),
+            img:faker.image.urlLoremFlickr({width: 400, height: 200, category: 'vehicles' }),
+            manufacturer:faker.vehicle.manufacturer(),
+            excerpt: faker.lorem.sentence(10),
+            description: faker.lorem.sentence(100)
         }
     })
     firstGestionLocalStorage(arrayVehicles);
