@@ -4,8 +4,9 @@ import { BrowserRouter, Routes, Route, } from 'react-router-dom';
 
 import {Footer, Header} from './layout/'
 import { useEffect } from 'react';
-import { postAnimals } from './data/dataAnimals/dataAnimals';
 import { postVehicles } from './data/dataVehicles/dataVehicles';
+//import { postAnimals } from './data/dataAnimals/dataAnimals';
+import { postAnimals } from './data';
 
 
 function App() {

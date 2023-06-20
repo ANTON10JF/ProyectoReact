@@ -33,7 +33,7 @@ export default function Animal() {
                         <article>
                             <h3>{animal.species}</h3>
                             <div>
-                                <img src={`${animal.img}`} alt='imgAnimal' />
+                                <img src={`${animal.image}`} alt='imgAnimal' />
                                 <p>
                                     {animal.excerpt}
                                 </p>
