@@ -1,19 +1,20 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ErrorMessage } from "../../compartidos";
-import products from "../../data/products/products";
 
 export default function Product() {
     let { id } = useParams();
     const [filteredProduct, setFilteredProduct] = useState({});
 
     useEffect(() => {
-        const getProduct = products.filter((product) => {
-            return product.id == id;
-        });
-        setFilteredProduct(getProduct[0]);
-
+        getProduct(id);
     }, []);
+
+    const getProduct = (id) => {
+        const getLocalStorage = JSON.parse(localStorage.getItem('products'));
+        const getProduct = getLocalStorage.filter(product => product.id == id);
+        getProduct.length > 0 ? setFilteredProduct(getProduct[0]) : setFilteredProduct({});
+    };
 
     return (
         <>
