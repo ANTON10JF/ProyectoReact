@@ -28,6 +28,7 @@ export default function ProductsList() {
     const handleEditar = (product) => {
         setEditMode(true);
         setSelectedProduct(product);
+        setOpenModal(true);
 
     }
 
@@ -36,6 +37,10 @@ export default function ProductsList() {
         const newProducts = products.filter(product => product.id !== id);
         localStorage.setItem('products', JSON.stringify(newProducts));
         getProducts();
+    }
+
+    const newProducts = () => {
+        setOpenModal(true);
     }
 
     // formulario
@@ -83,6 +88,7 @@ export default function ProductsList() {
             });
             setProducts(updatedProducts);
             localStorage.setItem('products', JSON.stringify(updatedProducts));
+
         } else {
             const newProduct = {
                 ...form,
@@ -90,6 +96,7 @@ export default function ProductsList() {
             }
             setProducts([newProduct, ...products]);
             localStorage.setItem('pronewProductducts', JSON.stringify(products));
+
         }
 
         setForm({
@@ -103,6 +110,7 @@ export default function ProductsList() {
 
         setEditMode(false);
         setSelectedProduct(null);
+        setOpenModal(false);
 
     }
 
@@ -158,8 +166,8 @@ export default function ProductsList() {
                                             <p>{product.description}</p>
                                             <p>{product.price}</p>
                                             <div className="footer-card">
-                                                <button className="btn-card btn-card-edit" onClick={() => handleEditar(product)}>Editar</button>
-                                                <button className="btn-card btn-card-delete" onClick={() => handleEliminar(product.id)}>Eliminar</button>
+                                                <button className="btn-card btn-card-edit" onClick={() => handleEditar(product)}></button>
+                                                <button className="btn-card btn-card-delete" onClick={() => handleEliminar(product.id)}></button>
                                             </div>
 
                                         </div>
@@ -170,7 +178,8 @@ export default function ProductsList() {
                         }
                     </div>
                 </main>
-                {openModal ? <ModalForm setOpenModal={setOpenModal}>{formProducts}</ModalForm> : null}
+                <button className='add-item' onClick={newProducts}>+</button>
+                {openModal ? <ModalForm setOpenModal={setOpenModal}>{formProducts()}</ModalForm> : null}
             </section>
         </>
     );
