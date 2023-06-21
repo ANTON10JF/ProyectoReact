@@ -35,7 +35,7 @@ export default function Animal() {
                             <div>
                                 <img src={`${animal.image}`} alt='imgAnimal' />
                                 <p>
-                                    {animal.excerpt}
+                                    {animal.description}
                                 </p>
                             </div>
                             <span>{'From->'}{animal.location}</span>

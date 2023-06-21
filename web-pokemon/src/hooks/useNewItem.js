@@ -1,7 +1,7 @@
-function useNewAnimal(setDatos, setEditItem, setOpenModal) {
+function useNewItem(setDatos, setEditItem, setOpenModal) {
 
      //Logica encargada de crear un item y agregarlo al localStorage
-     function newAnimal() {
+    function newItem() {
 
         //Seteo los datos con los valores en blanco. Para cuando pinte el formulario este limpio.
         setDatos({ id: '', species: '', image: '', location: '', excerpt: '', description: '' });
@@ -16,7 +16,7 @@ function useNewAnimal(setDatos, setEditItem, setOpenModal) {
         const body = document.querySelector('body');
         body.classList.add('modal-open');
     };
-    return newAnimal
+    return newItem
 }
 
-export default useNewAnimal
+export default useNewItem

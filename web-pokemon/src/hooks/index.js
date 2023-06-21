@@ -1,9 +1,9 @@
-import useNewAnimal from "./useNewAnimal";
-import useDeleteAnimal from "./useDeleteAnimal";
-import useEditAnimal from "./useEditAnimal";
+import useNewItem from "./useNewItem";
+import useDeleteItem from "./useDeleteItem";
+import useEditItem from "./useEditItem";
 
 export{
-    useNewAnimal,
-    useDeleteAnimal,
-    useEditAnimal
+    useNewItem,
+    useDeleteItem,
+    useEditItem
 }

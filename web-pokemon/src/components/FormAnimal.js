@@ -1,5 +1,5 @@
  //Creamos un 'Componente' que retorna un formulario para editar o crear un nuevo item 'animal' y lo pintamos dentro del Comonente 'ModalForm'
- function FormAnimal({datos, setDatos, editItem, animals, setChange, setOpenModal}) {
+ function FormAnimal({datos, setDatos, editItem, item, nameItem, setChange, setOpenModal}) {
 
       //Logica encargada de manejar el estado data, segun los cambios que se realicen en el formulario
       const handleChange = (e) => {
@@ -16,19 +16,19 @@
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        const modifiedLocalStorage = JSON.parse(localStorage.getItem('animals'))
+        const modifiedLocalStorage = JSON.parse(localStorage.getItem(nameItem))
 
         //Si el estado 'editItem' es = 'falshy', estamos creando un nuevo item
         if (!editItem) {
             let maxId = 0;
-            animals.forEach(objeto => {
+            item.forEach(objeto => {
                 if (objeto.id > maxId) {
                     maxId = objeto.id;
                 }
             });
             datos.id = maxId + 1
             modifiedLocalStorage.unshift(datos);
-            localStorage.setItem('animals', JSON.stringify(modifiedLocalStorage));
+            localStorage.setItem(nameItem, JSON.stringify(modifiedLocalStorage));
         }
 
         //Si el estado 'editItem' es = 'truthy', estamos editando un item y 'editItem' contiene ese item 
@@ -56,7 +56,7 @@
             });
 
             //Seteamos el nuevo array al localStorage, esto pisara el 'key' con el mismo nombre
-            localStorage.setItem('animals', JSON.stringify(editLocalStorage));
+            localStorage.setItem(nameItem, JSON.stringify(editLocalStorage));
         };
 
         //Finalmente ocurra lo que ocurra 

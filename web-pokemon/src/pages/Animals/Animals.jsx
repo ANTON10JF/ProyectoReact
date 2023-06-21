@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import ModalForm from '../../compartidos/ModalForm/ModalForm';
 import FormAnimal from '../../components/FormAnimal';
-import { useDeleteAnimal, useEditAnimal, useNewAnimal } from '../../hooks';
+import { useDeleteItem, useEditItem, useNewItem } from '../../hooks';
 
 
 export default function Animals() {
@@ -36,13 +36,13 @@ export default function Animals() {
     }, [change]);
 
     //Logica encargada de crear un item y agregarlo al localStorage
-    const newAnimal = useNewAnimal(setDatos,setEditItem, setOpenModal)
+    const newAnimal = useNewItem(setDatos, setEditItem, setOpenModal)
 
     //Logica encargada de editar un item del localStorage
-    const editAnimal = useEditAnimal(setDatos,setEditItem, setOpenModal)
+    const editAnimal = useEditItem(setDatos, setEditItem, setOpenModal)
 
     //Logica encargado de borrar un item del localStorage
-    const deleteAnimal = useDeleteAnimal(setChange)
+    const deleteAnimal = useDeleteItem(setChange)
 
 
     return (
@@ -80,9 +80,9 @@ export default function Animals() {
             <button className='add-item' onClick={newAnimal}>+</button>
 
             {/* Si openModal es true, mostramos el 'componente' modal */}
-            {openModal ? <ModalForm setOpenModal={setOpenModal}>{<FormAnimal datos={datos} setDatos={setDatos} editItem={editItem} animals={animals} setChange={setChange} setOpenModal={setOpenModal}/>}</ModalForm> : null}
+            {openModal ? <ModalForm setOpenModal={setOpenModal}>{<FormAnimal datos={datos} setDatos={setDatos} editItem={editItem} item={animals} nameItem={'animals'} setChange={setChange} setOpenModal={setOpenModal} />}</ModalForm> : null}
         </section>
     );
-    
+
 
 };

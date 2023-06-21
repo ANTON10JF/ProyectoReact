@@ -1,7 +1,7 @@
- function useDeleteAnimal(setChange) {
+ function useDeleteItem(setChange) {
 
     //Logica encargado de borrar un item del localStorage
-    const deleteAnimal = (e, animalId) => {
+    const deleteItem = (e, animalId) => {
         //Como todo el card es un link, realizamos un 'preventDefault()' para evitar el link y que realice el efecto del boton
         e.preventDefault();
 
@@ -21,8 +21,8 @@
         };
     };
 
-    return deleteAnimal
+    return deleteItem
 
  }
 
- export default useDeleteAnimal
+ export default useDeleteItem

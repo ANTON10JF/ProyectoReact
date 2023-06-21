@@ -1,7 +1,7 @@
-function useEditAnimal (setDatos, setEditItem, setOpenModal) {
+function useEditItem (setDatos, setEditItem, setOpenModal) {
 
     //Logica encargada de editar un item del localStorage
-    const editAnimal = (e, animal) => {
+    const editItem = (e, animal) => {
         //Como todo el card es un link, realizo un prevent default para evitar el link y que realice el efecto del boton
         e.preventDefault();
 
@@ -19,8 +19,8 @@ function useEditAnimal (setDatos, setEditItem, setOpenModal) {
         body.classList.add('modal-open');
     };
 
-    return editAnimal
+    return editItem
 
 }
 
-export default useEditAnimal
+export default useEditItem
