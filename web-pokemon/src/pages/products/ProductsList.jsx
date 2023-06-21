@@ -2,12 +2,14 @@
 import { Link, useResolvedPath } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
+import ModalForm from '../../compartidos/ModalForm/ModalForm';
 
 export default function ProductsList() {
     const path = useResolvedPath("").pathname;
     const [products, setProducts] = useState([]);
     const [editMode, setEditMode] = useState(false);
     const [selectedProduct, setSelectedProduct] = useState(null);
+    const [openModal, setOpenModal] = useState(false);
 
     useEffect(() => {
         getProducts();
@@ -38,7 +40,7 @@ export default function ProductsList() {
 
     // formulario
     const [form, setForm] = useState({
-        id: faker.datatype.uuid(),
+        id: '',
         name: '',
         price: '',
         image: faker.image.image(),
@@ -86,8 +88,8 @@ export default function ProductsList() {
                 ...form,
                 id: faker.datatype.uuid(),
             }
-            setProducts([...products, newProduct]);
-            localStorage.setItem('products', JSON.stringify([...products, newProduct]));
+            setProducts([newProduct, ...products]);
+            localStorage.setItem('pronewProductducts', JSON.stringify(products));
         }
 
         setForm({
@@ -104,36 +106,34 @@ export default function ProductsList() {
 
     }
 
+    const formProducts = () => {
+        return (
+            <form onSubmit={handleSubmit} className='modal-form'>
+                <div>
+                    <label htmlFor="name">Nombre</label>
+                    <input type="text" id="name" name="name" value={form.name} onChange={handleChange} />
+                </div>
+                <div>
+                    <label htmlFor="price">Precio</label>
+                    <input type="number" id="price" name="price" value={form.price} onChange={handleChange} />
+                </div>
+                <div>
+                    <label htmlFor="image">Imagen</label>
+                    <input type="text" id="image" name="image" value={form.image} onChange={handleChange} />
+                </div>
+                <div>
+                    <label htmlFor="description">Descripción</label>
+                    <input type="text" id="description" name="description" value={form.description} onChange={handleChange} />
+                </div>
+                <div>
+                    <button type="submit">Guardar</button>
+                </div>
+            </form>
+        )
+    }
+
     return (
         <>
-            <section>
-                <header className='section-title'>
-                    <h2>Formulario</h2>
-                </header>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label htmlFor="name">Nombre</label>
-                        <input type="text" id="name" name="name" value={form.name} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="price">Precio</label>
-                        <input type="number" id="price" name="price" value={form.price} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="image">Imagen</label>
-                        <input type="text" id="image" name="image" value={form.image} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="description">Descripción</label>
-                        <input type="text" id="description" name="description" value={form.description} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <button type="submit">Guardar</button>
-                    </div>
-                </form>
-
-            </section>
-
             <section>
                 <header className='section-title'>
                     <h2>Lista de productos</h2>
@@ -157,8 +157,11 @@ export default function ProductsList() {
                                             </div>
                                             <p>{product.description}</p>
                                             <p>{product.price}</p>
-                                            <button onClick={() => handleEditar(product)}>Editar</button>
-                                            <button onClick={() => handleEliminar(product.id)}>Eliminar</button>
+                                            <div className="footer-card">
+                                                <button className="btn-card btn-card-edit" onClick={() => handleEditar(product)}>Editar</button>
+                                                <button className="btn-card btn-card-delete" onClick={() => handleEliminar(product.id)}>Eliminar</button>
+                                            </div>
+
                                         </div>
 
                                     </article>
@@ -167,6 +170,7 @@ export default function ProductsList() {
                         }
                     </div>
                 </main>
+                {openModal ? <ModalForm setOpenModal={setOpenModal}>{formProducts}</ModalForm> : null}
             </section>
         </>
     );
