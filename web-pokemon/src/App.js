@@ -1,12 +1,12 @@
 import './App.css';
 import { HomePage, Contact, NotFound, About, ProductsList, Product, Vehicles, Vehicle, Animals, Animal } from './pages/';
 import { BrowserRouter, Routes, Route, } from 'react-router-dom';
-
 import { Footer, Header } from './layout/'
 import { useEffect } from 'react';
-import { postAnimals } from './data/dataAnimals/dataAnimals';
 import { postVehicles } from './data/dataVehicles/dataVehicles';
 import postProduct from './data/products/products';
+import { postAnimals } from './data';
+
 
 
 function App() {
@@ -16,7 +16,8 @@ function App() {
     postVehicles()
     postProduct()
 
-  }, []);
+  },[]);
+
 
   return (
     <BrowserRouter>
