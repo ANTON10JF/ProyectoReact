@@ -14,20 +14,20 @@ export default function Animals() {
     const [editItem, setEditItem] = useState('');
 
 
-    const [getLocalStorage, setGetLocalStorage] = useState([])
+    //const [getLocalStorage, setGetLocalStorage] = useState([])
 
     useEffect(() => {
         //Reasignamos el estado 'change' a fale, para posibles nuevos cambios
         setChange(false);
 
         //Asignamos el valor actualizado del localStorage a 'getLocalStorage' tras cada cambio
-        setGetLocalStorage(JSON.parse(localStorage.getItem('animals')));
+        //setGetLocalStorage(JSON.parse(localStorage.getItem('animals')));
 
         //Esto llama a 'getLocalStorage' en el que se renderiza, si 'getLocalStorage' actualiza el estado entre renderizaciones no se reflejara en el estado
         //setAnimals(getLocalStorage)
 
-        //Esta funcion se ejecuta cada vez que se llama a 'setAnimals', incluso entre renderizaciones lo que garantiza el valor actualizado 
-        setAnimals(() => getLocalStorage);
+        //Esta funcion se ejecuta cada vez que se llama a 'localStorage', incluso entre renderizaciones lo que garantiza el valor actualizado 
+        setAnimals(() => JSON.parse(localStorage.getItem('animals')));
         //setAnimals(getLocalStorage)
 
         //Cada vez que el estado 'change' se actualiza se ejecuta useEffect
@@ -105,7 +105,7 @@ export default function Animals() {
     //Logica encargada de manejar el submit del formulario
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         const modifiedLocalStorage = JSON.parse(localStorage.getItem('animals'))
 
         //Si el estado 'editItem' es = 'falshy', estamos creando un nuevo item
@@ -231,6 +231,6 @@ export default function Animals() {
             {openModal ? <ModalForm setOpenModal={setOpenModal}>{formAnimal()}</ModalForm> : null}
         </section>
     );
-    
+
 
 };
