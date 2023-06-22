@@ -164,10 +164,14 @@ export default function ProductsList() {
                                                 </Link>
                                             </div>
                                             <p>{product.description}</p>
-                                            <p>{product.price}</p>
+
                                             <div className="footer-card">
-                                                <button className="btn-card btn-card-edit" onClick={() => handleEditar(product)}></button>
-                                                <button className="btn-card btn-card-delete" onClick={() => handleEliminar(product.id)}></button>
+                                                <p>{product.price}</p>
+                                                <div>
+                                                    <button className="btn-card btn-card-edit" onClick={() => handleEditar(product)}></button>
+                                                    <button className="btn-card btn-card-delete" onClick={() => handleEliminar(product.id)}></button>
+                                                </div>
+
                                             </div>
 
                                         </div>
