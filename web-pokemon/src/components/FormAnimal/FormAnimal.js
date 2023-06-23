@@ -1,8 +1,21 @@
+import { useState } from "react"
+
+import {validators} from '../../validators/validators.jsx'
+
+ 
  //Creamos un 'Componente' que retorna un formulario para editar o crear un nuevo item 'animal' y lo pintamos dentro del Comonente 'ModalForm'
  function FormAnimal({datos, setDatos, editItem, item, nameItem, setChange, setOpenModal}) {
 
+
+    //Para manejar errores, estado con un objeto de todos los campos que queremos validar
+    const [fomrError, setFormError] = useState({species:'', image:'', location:'', excerpt:'', description:''});
+
+    const {
+
+    } = validators()
+    
       //Logica encargada de manejar el estado data, segun los cambios que se realicen en el formulario
-      const handleChange = (e) => {
+    const handleChange = (e) => {
         //Escuchamos que nombre y que valor se esta modificando
         const { name, value } = e.target;
 
