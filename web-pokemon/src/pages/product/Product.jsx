@@ -18,24 +18,17 @@ export default function Product() {
     return (
         <>
             <section>
-                {
-                    !filteredProduct.length ? (
-                        <article>
-                            <header>
-                                <h2>{filteredProduct.name}</h2>
-                            </header>
-                            <div>
-                                <img src={filteredProduct.image} alt={filteredProduct.name} />
-                            </div>
-                            <p>{filteredProduct.description}</p>
-                            <p>{filteredProduct.price}</p>
+                <article>
+                    <header>
+                        <h2>{filteredProduct.name}</h2>
+                    </header>
+                    <div>
+                        <img src={filteredProduct.image} alt={filteredProduct.name} />
+                    </div>
+                    <p>{filteredProduct.description}</p>
+                    <p>{filteredProduct.price}</p>
 
-                        </article>
-                    ) : (
-                        <ErrorMessage message={"Producto no encontrado"} />
-                    )
-                }
-
+                </article>
             </section>
         </>
 

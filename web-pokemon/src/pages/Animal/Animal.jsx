@@ -28,26 +28,16 @@ export default function Animal() {
                 <h2>Animales</h2>
             </header>
             <main>
-                {animal ?
-                    (
-                        <article>
-                            <h3>{animal.species}</h3>
-                            <div>
-                                <img src={`${animal.img}`} alt='imgAnimal' />
-                                <p>
-                                    {animal.excerpt}
-                                </p>
-                            </div>
-                            <span>{'From->'}{animal.location}</span>
-                        </article>
-                    )
-                    :
-
-                    (
-                        <ErrorMessage message={'Animales no encontrados'} />
-                    )
-                }
-
+                <article>
+                    <h3>{animal.species}</h3>
+                    <div>
+                        <img src={`${animal.img}`} alt='imgAnimal' />
+                        <p>
+                            {animal.excerpt}
+                        </p>
+                    </div>
+                    <span>{'From->'}{animal.location}</span>
+                </article>
             </main>
         </section>
     );

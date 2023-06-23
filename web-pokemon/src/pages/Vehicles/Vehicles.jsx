@@ -1,6 +1,7 @@
 // import vehicles from "../../data/dataVehicles/dataVehicles";
 import { useEffect, useState } from "react";
 import { Link, useResolvedPath } from "react-router-dom";
+import ModalForm from "../../compartidos/ModalForm/ModalForm";
 
 
 export default function Vehicles() {
@@ -9,6 +10,7 @@ export default function Vehicles() {
     const [vehicles, setVehicles] = useState([]);
     const [vehicleData, setVehicleData] = useState({id: '', img: '', vehicle: '', type : '', model: '', manufacturer: '', excerpt: '', description: '',});
     const [editing, setEditing] = useState(false);
+    // const [editing, setEditing] = useState('');
     const [change, setChange] = useState(true);
     const [openModal, setOpenModal] = useState(false);
 
@@ -48,6 +50,7 @@ export default function Vehicles() {
                         manufacturer: vehicle.manufacturer, excerpt: vehicle.excerpt, description: vehicle.description});
 
         setEditing(true);
+
         setOpenModal(true);
 
         const body = document.querySelector('body');
@@ -89,7 +92,6 @@ export default function Vehicles() {
             })
 
             localStorage.setItem('vehicles', JSON.stringify(editedVehicle));
-            // getVehicles(); TODO
         } else {
             console.log(vehicleData);
             let vehiclesList = JSON.parse(localStorage.getItem('vehicles'));
@@ -142,6 +144,10 @@ export default function Vehicles() {
                 <label>Vehicles name: 
                     <input type="text" id="vehicle" name="vehicle" value={vehicleData.vehicle} onChange={handleChange} />
                 </label>
+
+                <label>Image:
+                    <input type="text" name='img' value={vehicleData.img} onChange={handleChange} />
+                </label>
                 
                 <label>Type: 
                     <input type="text" id="type" name="type" value={vehicleData.type} onChange={handleChange} />
@@ -189,8 +195,8 @@ export default function Vehicles() {
                                     </div>
                                     <div className="footer-card">Fabricante: {vehicle.manufacturer}</div>
                                     
-                                    <button type="submit" onClick={(e) => editVehicle(e, vehicle)} className='btn-card btn-card-edit'></button>
-                                    <button type="submit" onClick={(e) => deleteVehicle(e, vehicle.id)} className='btn-card btn-card-delete'></button>
+                                    <button type="submit" onClick={(e) => editVehicle(e, vehicle)} className='btn-card btn-card-edit'>Editar</button>
+                                    <button type="submit" onClick={(e) => deleteVehicle(e, vehicle.id)} className='btn-card btn-card-delete'>Borrar</button>
                                 </article>
                             </Link>
                         )}
