@@ -2,7 +2,7 @@
 import { Link, useResolvedPath } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
-import ModalForm from '../../compartidos/ModalForm/ModalForm';
+import ModalForm from '../../components/ModalForm/ModalForm';
 
 export default function ProductsList() {
     const path = useResolvedPath("").pathname;

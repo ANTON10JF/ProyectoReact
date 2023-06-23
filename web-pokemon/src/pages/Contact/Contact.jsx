@@ -1,5 +1,5 @@
+import Map from "../../components/Map/Map";
 import "./contact.css";
-import { Map } from "../../compartidos";
 import { useState } from "react";
 
 

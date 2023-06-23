@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
-import ModalForm from '../../compartidos/ModalForm/ModalForm';
-import FormAnimal from '../../components/FormAnimal';
+import ModalForm from '../../components/ModalForm/ModalForm';
+import FormAnimal from '../../components/FormAnimal/FormAnimal';
 //Logica encargado de editar, borrar y crear un item del localStorage
 import { functionEditItem, functionDeleteItem, functionNewItem } from '../../helpers/cartsManagement'
 
