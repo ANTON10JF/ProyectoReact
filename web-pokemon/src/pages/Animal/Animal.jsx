@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react';
-import { ErrorMessage } from '../../compartidos';
-//import posts from '../../data/dataAnimals/dataAnimals'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 
 export default function Animal() {
@@ -9,6 +7,8 @@ export default function Animal() {
     const { id } = useParams();
 
     const [animal, setAnimal] = useState({});
+
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -22,6 +22,10 @@ export default function Animal() {
         getA.length > 0 ? setAnimal(getA[0]) : setAnimal({});
     };
 
+    if (!animal.id) {
+        navigate("/not-found");
+    }
+
     return (
         <section>
             <header>
@@ -31,9 +35,9 @@ export default function Animal() {
                 <article>
                     <h3>{animal.species}</h3>
                     <div>
-                        <img src={`${animal.img}`} alt='imgAnimal' />
+                        <img src={`${animal.image}`} alt='imgAnimal' />
                         <p>
-                            {animal.excerpt}
+                            {animal.description}
                         </p>
                     </div>
                     <span>{'From->'}{animal.location}</span>

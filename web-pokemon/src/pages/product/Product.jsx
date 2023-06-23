@@ -1,23 +1,29 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { ErrorMessage } from "../../compartidos";
-import products from "../../data/products/products";
 
 export default function Product() {
     let { id } = useParams();
     const [filteredProduct, setFilteredProduct] = useState({});
+    const navigate = useNavigate();
 
     useEffect(() => {
-        const getProduct = products.filter((product) => {
-            return product.id == id;
-        });
-        setFilteredProduct(getProduct[0]);
-
+        getProduct(id);
     }, []);
+
+    const getProduct = (id) => {
+        const getLocalStorage = JSON.parse(localStorage.getItem('products'));
+        const getProduct = getLocalStorage.filter(product => product.id == id);
+        getProduct.length > 0 ? setFilteredProduct(getProduct[0]) : setFilteredProduct({});
+    };
+
+    if (!filteredProduct.id) {
+        navigate('/not-found');
+    }
 
     return (
         <>
             <section>
+
                 <article>
                     <header>
                         <h2>{filteredProduct.name}</h2>
@@ -29,6 +35,7 @@ export default function Product() {
                     <p>{filteredProduct.price}</p>
 
                 </article>
+
             </section>
         </>
 
