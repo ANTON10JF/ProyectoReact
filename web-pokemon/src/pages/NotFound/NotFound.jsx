@@ -1,6 +1,7 @@
 import './notFound.css'
 
 export default function NotFound() {
+
     return (
         <section id="section-not-found">
             <div id='container-error-message'>

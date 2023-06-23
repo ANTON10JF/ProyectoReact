@@ -1,12 +1,12 @@
 import { useParams } from "react-router-dom";
 import vehicles from "../../data/dataVehicles/dataVehicles";
 import { useEffect, useState } from "react";
-import { ErrorMessage } from '../../compartidos';
+//import { ErrorMessage } from '../../compartidos';
 
 
 export default function Vehicle() {
 
-    const {id} = useParams()
+    const { id } = useParams()
 
     const [vehicle, setVehicle] = useState({}); // siempre hay que inicializarlo pero como sé que recojo array, inicialiizamos a array vacío
 
@@ -20,12 +20,12 @@ export default function Vehicle() {
         getV.length > 0 ? setVehicle(getV[0]) : setVehicle({});
     }
 
-    return(
+    return (
         <>
             <section>
                 <header>Vehiculos</header>
                 <main>
-                    {vehicle ?
+                    {/* vehicle ?
                         (
                             <article>
                                 <h3>{vehicle.vehicle}</h3>
@@ -35,11 +35,18 @@ export default function Vehicle() {
                                 </div>
                             </article>
                         )
-                    : 
+                        :
                         (
-                            <ErrorMessage message={'Vehiculos no encontardos'}/>
+                            <ErrorMessage message={'Vehiculos no encontardos'} />
                         )
-                    }
+                     */}
+                    <article>
+                        <h3>{vehicle.vehicle}</h3>
+                        <div>
+                            <p>{vehicle.model}</p>
+                            <p>{vehicle.color}</p>
+                        </div>
+                    </article>
                 </main>
             </section>
         </>

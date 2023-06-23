@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'
 import ModalForm from '../../compartidos/ModalForm/ModalForm';
 import FormAnimal from '../../components/FormAnimal';
-import { useDeleteItem, useEditItem, useNewItem } from '../../hooks';
+//Logica encargado de editar, borrar y crear un item del localStorage
+import { functionEditItem, functionDeleteItem, functionNewItem } from '../../helpers/cartsManagement'
 
 
 export default function Animals() {
@@ -16,35 +17,15 @@ export default function Animals() {
     const [editItem, setEditItem] = useState('');
 
 
-    //const [getLocalStorage, setGetLocalStorage] = useState([])
-
     useEffect(() => {
         //Reasignamos el estado 'change' a fale, para posibles nuevos cambios
         setChange(false);
 
-        //Asignamos el valor actualizado del localStorage a 'getLocalStorage' tras cada cambio
-        //setGetLocalStorage(JSON.parse(localStorage.getItem('animals')));
-
-        //Esto llama a 'getLocalStorage' en el que se renderiza, si 'getLocalStorage' actualiza el estado entre renderizaciones no se reflejara en el estado
-        //setAnimals(getLocalStorage)
-
-        //Esta funcion se ejecuta cada vez que se llama a 'setAnimals', incluso entre renderizaciones lo que garantiza el valor actualizado 
-        //setAnimals(() => getLocalStorage);
+        //Asignamos el valor actualizado del localStorage a 'animals' tras cada cambio
         setAnimals(() => JSON.parse(localStorage.getItem('animals')));
-        //setAnimals(getLocalStorage)
 
         //Cada vez que el estado 'change' se actualiza se ejecuta useEffect
     }, [change]);
-
-    //Logica encargada de crear un item y agregarlo al localStorage
-    const newAnimal = useNewItem(setDatos, setEditItem, setOpenModal)
-
-    //Logica encargada de editar un item del localStorage
-    const editAnimal = useEditItem(setDatos, setEditItem, setOpenModal)
-
-    //Logica encargado de borrar un item del localStorage
-    const deleteAnimal = useDeleteItem(setChange)
-
 
     return (
         <section>
@@ -68,8 +49,8 @@ export default function Animals() {
                                     <div className='footer-card'>
                                         <p>{'From->'}{animal.location}</p>
                                         <div>
-                                            <button onClick={(e) => editAnimal(e, animal)} className='btn-card btn-card-edit'></button>
-                                            <button onClick={(e) => deleteAnimal(e, animal.id)} className='btn-card btn-card-delete'></button>
+                                            <button onClick={(e) => functionEditItem(e, animal, setDatos, setEditItem, setOpenModal)} className='btn-card btn-card-edit'></button>
+                                            <button onClick={(e) => functionDeleteItem(e, animal.id, setChange)} className='btn-card btn-card-delete'></button>
                                         </div>
                                     </div>
                                 </div>
@@ -78,7 +59,7 @@ export default function Animals() {
                     )}
                 </div>
             </main>
-            <button className='add-item' onClick={newAnimal}>+</button>
+            <button className='add-item' onClick={() => functionNewItem(setDatos, setEditItem, setOpenModal)}>+</button>
 
             {/* Si openModal es true, mostramos el 'componente' modal */}
             {openModal ? <ModalForm setOpenModal={setOpenModal}>{<FormAnimal datos={datos} setDatos={setDatos} editItem={editItem} item={animals} nameItem={'animals'} setChange={setChange} setOpenModal={setOpenModal} />}</ModalForm> : null}
