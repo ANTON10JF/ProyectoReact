@@ -32,7 +32,6 @@ export default function Vehicle() {
                         <h3 className="{vehicle.id}">{vehicle.vehicle}</h3>
                         <div>
                             <img src={`${vehicle.img}`} alt={`Imegen de un ${vehicle.vehicle}`} />
-                            <p>Tipo: {vehicle.type}</p>
                             <p>Modelo: {vehicle.model}</p>
                             <p>Fabricante: {vehicle.manufacturer}</p>
                             <p>{vehicle.description}</p>

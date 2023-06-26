@@ -24,7 +24,6 @@ export function postVehicles() {
         return {
             id:vehicle,
             vehicle:faker.vehicle.vehicle(),
-            type:faker.vehicle.type(),
             model:faker.vehicle.model(),
             img:faker.image.urlLoremFlickr({width: 400, height: 200, category: 'vehicles' }),
             manufacturer:faker.vehicle.manufacturer(),
