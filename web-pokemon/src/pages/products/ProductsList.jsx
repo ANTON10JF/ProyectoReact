@@ -3,6 +3,7 @@ import { Link, useResolvedPath } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 import ModalForm from '../../components/ModalForm/ModalForm';
+import { validateName, validatePrice, validateDescription } from '../../validators/validators';
 
 export default function ProductsList() {
     const path = useResolvedPath("").pathname;
@@ -73,30 +74,42 @@ export default function ProductsList() {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        if (editMode && selectedProduct) {
-            const updatedProducts = products.map((product) => {
-                if (product.id === selectedProduct.id) {
-                    return {
-                        ...product,
-                        name: form.name,
-                        price: form.price,
-                        image: form.image,
-                        description: form.description,
-                    }
-                }
-                return product;
-            });
-            setProducts(updatedProducts);
-            localStorage.setItem('products', JSON.stringify(updatedProducts));
-
-        } else {
-            const newProduct = {
-                ...form,
-                id: faker.datatype.uuid(),
+        setError(
+            {
+                name: validateName(form.name),
+                price: validatePrice(form.price),
+                description: validateDescription(form.description),
             }
-            setProducts([newProduct, ...products]);
-            localStorage.setItem('pronewProductducts', JSON.stringify(products));
+        );
 
+
+        if (!hasErrors()) {
+
+            if (editMode && selectedProduct) {
+                const updatedProducts = products.map((product) => {
+                    if (product.id === selectedProduct.id) {
+                        return {
+                            ...product,
+                            name: form.name,
+                            price: form.price,
+                            image: form.image,
+                            description: form.description,
+                        }
+                    }
+                    return product;
+                });
+                setProducts(updatedProducts);
+                localStorage.setItem('products', JSON.stringify(updatedProducts));
+
+            } else {
+                const newProduct = {
+                    ...form,
+                    id: faker.datatype.uuid(),
+                }
+                setProducts([newProduct, ...products]);
+                localStorage.setItem('pronewProductducts', JSON.stringify(products));
+
+            }
         }
 
         setForm({
@@ -107,6 +120,7 @@ export default function ProductsList() {
             description: '',
 
         })
+
 
         setEditMode(false);
         setSelectedProduct(null);
@@ -120,10 +134,12 @@ export default function ProductsList() {
                 <div>
                     <label htmlFor="name">Nombre</label>
                     <input type="text" id="name" name="name" value={form.name} onChange={handleChange} />
+                    {error.name && <span className='error'>{error.name}</span>}
                 </div>
                 <div>
                     <label htmlFor="price">Precio</label>
                     <input type="number" id="price" name="price" value={form.price} onChange={handleChange} />
+                    {error.price && <span className='error'>{error.price}</span>}
                 </div>
                 <div>
                     <label htmlFor="image">Imagen</label>
@@ -132,6 +148,7 @@ export default function ProductsList() {
                 <div>
                     <label htmlFor="description">Descripción</label>
                     <input type="text" id="description" name="description" value={form.description} onChange={handleChange} />
+                    {error.description && <span className='error'>{error.description}</span>}
                 </div>
                 <div>
                     <button type="submit">Guardar</button>
@@ -139,6 +156,10 @@ export default function ProductsList() {
             </form>
         )
     }
+
+    const hasErrors = () => {
+        return Object.values(error).some(value => value !== '');
+    };
 
     return (
         <>
