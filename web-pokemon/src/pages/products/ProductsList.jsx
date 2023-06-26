@@ -27,6 +27,7 @@ export default function ProductsList() {
 
 
     const handleEditar = (product) => {
+
         setEditMode(true);
         setSelectedProduct(product);
         setOpenModal(true);
