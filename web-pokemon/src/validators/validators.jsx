@@ -54,6 +54,51 @@ const validatePrice = (price) => {
     return '';
 };
 
+
+
+/*  */
+
+
+function validarObligatorio(campo, rename) {
+    if (!campo) {
+        return `${rename} es obligatorio.`;
+    }
+
+    return ''; // Es válido
+}
+
+function validarSinNumeros(campo, rename) {
+    const regex = /^[^\d]+$/;
+
+    if (!(regex.test(campo))) {
+
+        return `${rename} no acepta numeros.`;
+    }
+
+    return ''; // Es válido
+}
+
+function validarLongitud(campo, rename, longitud) {
+    if (campo.length > longitud) {
+        return `${rename} no puede tener más de ${longitud} caracteres.`;
+    }
+
+    return ''; // Es válido
+}
+
+/*  */
+
 export {
-    validateEmail, validatePassword, validatePhone, validateName, validateDescription, validatePrice
+
+    validateDescription,
+    validatePrice,
+    validateEmail,
+    validatePassword,
+    validatePhone,
+    validateUser,
+    validateName,
+    validarObligatorio,
+    validarSinNumeros,
+    validarLongitud
+
 }
